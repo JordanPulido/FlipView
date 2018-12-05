@@ -1,124 +1,86 @@
-[![Download](https://api.bintray.com/packages/davideas/maven/flipview/images/download.svg) ](https://bintray.com/davideas/maven/flipview/_latestVersion)
-[![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
-[![Licence](https://img.shields.io/badge/Licence-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Methods and Size](https://img.shields.io/badge/Methods%20and%20Size-core:%20190%20%7C%2034%20KB-e91e63.svg)](http://www.methodscount.com/?lib=eu.davidea%3Aflipview%3A1.1.3)
-
 # FlipView
 
-###### GMail-like View & beyond - v1.2.0 built on 2018.09.30 with AndroidX
+FlipView is a ViewGroup widget added into the android platforms that will animate a picture by adding 2 different views of the picture on it. The main feature of the FlipView is rotating a picture when it is touched. The animation can contain different styles of pictures, colors, and styles depending on how the user utilizies the FlipView widget. Any number of views can be added in a single layout also depending on the user. The purpose of this component is to add different styles of ImageViews in one layout, while customizing it with animation cycles.
 
-#### Concept
-FlipView is a ViewGroup (FrameLayout) that is designed to display 2 views/layouts by flipping
-the front one in favor of the back one, and vice versa. Optionally more views can be
-displayed in series one after another or can cycle with a interval.
+The following are commonly used for FlipView:
 
-Usage is very simple. You just need to add this View to any layout and you customize the behaviours
-by assigning values to the optional properties in the layout or programmatically.
-Please, refer to those attributes documentation for more details.
+- Web View(s)
+- List View(s)
+- Grid View(s)
+- Linear Layout(s)
+- Relative Layout(s)
+- Table Layout(s)
+- Frame Layout(s)
 
-Not less, FlipView extends `android.widget.ViewFlipper` that extends `android.widget.ViewAnimator`,
-which means you can call all public functions of these two Android views.
+Both FlipView and ViewGroup classes will always be a necessity to create views and layouts in android applications.
 
-#### Main features
-- Visible during design time ;-)
-- Custom In/Out animation + entry animation + rear ImageView animation
-- Custom layout, ImageView & TextView for front layout.
-- Custom layout, ImageView for rear layout.
-- Custom background Drawable & color.
-- AutoStart cycle animation with custom interval.
-- PictureDrawable for SVG resources.
+## History
 
-# Showcase
-![Showcase1](/showcase/showcase1.gif) ![Showcase2](/showcase/showcase2.gif)
+The FlipView (in this case regarding the ViewGroup widget) was relased in API level 1, making this widget one of earliest tools to arrive in the android application platform. Throughout the later API levels, different versions of the FlipView widget were created and customized.
 
-# Setup
-Import the library into your project using JCenter
+Different versions of FlipView include:
+
+- AdapterViewAnimator (API 11)
+- AdapterViewFlipper (API 11)
+- EasyFlipView (API 15)
+- ViewGroupOverlay (API 18)
+
+All of these versions serve the same function and purpose. However, certain libraries need to be installed and imported in the android application as they have to meet their own requirements in order to function by the developer.
+
+## Methods and Attributes
+
+In order to use the FlipView functionality, a library was installed and imported into the app. Inside the build.gradle (Module: app) file, wajahatkarim3's FlipView was used.
+
 ```
 dependencies {
-    implementation 'eu.davidea:flipview:1.2.0'
+  implementation 'com.wajahatkarim3.EasyFlipView:EasyFlipView:1.0.0'
 }
 ```
-#### Pull requests / Issues / Improvement requests
-Feel free to contribute and ask!
+To use the library in the program, you would need to implement the wajahatkarim3's easyflipview library from the build.gradle file. This is the activity_main.xml file.
 
-# Usage
-Supported attributes with _default_ values:
-``` xml
-<eu.davidea.flipview.FlipView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android usual attrs
-    (see below).../>
 ```
-|**ViewAnimator**||
-|:---|:---|
-| `android:inAnimation="@anim/grow_from_middle_x_axis"` | Identifier for the animation to use when a view is shown.
-| `android:outAnimation="@anim/shrink_to_middle_x_axis"` | Identifier for the animation to use when a view is hidden.
-| `android:animateFirstView="true"` | Defines whether to animate the current View when the ViewAnimation is first displayed.
+<com.wajahatkarim3.easyflipview.EasyFlipView
+...>
 
-|**ViewFlipper**||
-|:---|:---|
-| `android:autoStart="false"` | When true, automatically start animating.
-| `android:flipInterval="3000"` | Time before next animation.
+</com.wajahatkarim3.easyflipview.EasyFlipView>
+```
 
-| **FlipView** ||
-|:---|:---|
-| `android:clickable="false"` | **(!!)** Set this if you want view reacts to the tap and animate it.
-| `app:checked="false"` | Whether or not this component is showing rear layout at startup.
-| `app:animateDesignLayoutOnly="false"` | true, animate front and rear layouts from settings + child views; false, exclude all layouts and animate _only_ child views from design layout if any. (This attribute cannot be changed at runtime).
-| `app:animationDuration="100"` | Set the main animation duration.
-| `app:anticipateInAnimationTime="0"` | Anticipate the beginning of InAnimation, this time is already subtracted from the main duration (new delay is: main duration - anticipation time).
-| `app:enableInitialAnimation="false"` | Whether or not the initial animation should start at the beginning.
-| `app:initialLayoutAnimation="@anim/scale_up"` | Starting animation.
-| `app:initialLayoutAnimationDuration="250"` | Starting animation duration.
-| `app:frontLayout="@layout/flipview_front"` | Front view layout resource (for checked state -> false).
-| `app:frontBackground="<OvalShape Drawable generated programmatically>"` | Front drawable resource (for checked state -> false).
-| `app:frontBackgroundColor="<Color.GRAY set programmatically>"` | Front view color resource (for checked state -> false).
-| `app:frontImage="@null"` | Front image resource (for checked state -> false).
-| `app:frontImagePadding="0dp"` | Front image padding.
-| `app:rearLayout="@layout/flipview_rear"` | Rear view layout resource (for checked state -> true).
-| `app:rearBackground="<OvalShape Drawable generated programmatically>"` | Rear drawable resource (for checked state -> true).
-| `app:rearBackgroundColor="Color.GRAY set programmatically"` | Rear view color resource (for checked state -> true).
-| `app:rearImage="@drawable/ic_action_done"` | Rear accept image resource.
-| `app:rearImagePadding="0dp"` | Rear image padding.
-| `app:animateRearImage="true"` | Whether or not the rear image should animate.
-| `app:rearImageAnimation="@anim/scale_up"` | Rear image animation.
-| `app:rearImageAnimationDuration="150"` | Rear image animation duration.
-| `app:rearImageAnimationDelay="animationDuration"` | Rear image animation delay (depends the animation/duration it can be smart setting a specific delay. For GMail effect set this to 0).
+To get the Image to recognize its going to get flipped, this line of code was added to enable the flip feature on the ImageView.
 
-|**Non changeable values** (in ms)||
-|:---|:---|
-| `DEFAULT_INITIAL_DELAY = 500` | This gives enough time to the activity to load all tree views before starting cascade initial animation.
-| `SCALE_STEP_DELAY = 35` | This gives an acceptable nice loading effect.
-| `STOP_LAYOUT_ANIMATION_DELAY = 1500` | This gives enough time to perform all entry animations but to stop further animations when screen is fully rendered.
+```
+app:flipEnabled="true"
+```
 
-# Limitations
-- Transparency has a little glitch when used with elevation, you could see shadow In the shape: more transparent the color is more visible the shadow is.
-- Using layer type _software_ on the entire layout it removes the shadow/elevation.
-- Stroke and background color on custom Drawable should be preset by the user: too complex to determine the type of the Drawable used in order to change its color.
+In order to make the Image flip when its touched, the following code added a feature to flip the image when touched.
 
-# Change Log
-###### Latest release
-[v1.2.0](https://github.com/davideas/FlipView/releases) - 2018.09.30
+```
+app:flipOnTouch="true"
+```
 
-###### Old releases
-[v1.1.3](https://github.com/davideas/FlipView/releases/tag/1.1.3) - 2017.03.07 |
-[v1.1.2](https://github.com/davideas/FlipView/releases/tag/1.1.2) - 2016.11.30 |
-[v1.1.1](https://github.com/davideas/FlipView/releases/tag/1.1.1) - 2016.04.07<br/>
-[v1.1.0](https://github.com/davideas/FlipView/releases/tag/1.1.0) - 2015.11.05 |
-[v1.0.0](https://github.com/davideas/FlipView/releases/tag/1.0.0) - 2015.11.01
+To calculate the time the ImageView would be flipped, this attribute was added to determine the duration of the flip in milliseconds. This line of code basically gets the speed of the image while in animation.
 
-# License
+```
+app:flipDuration="400"
+```
 
-    Copyright 2015-2018 Davide Steduto
+## Example Project
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+In this repository is an example application of how this widget and code functions and works for the user. Not all code is necessary to get the program running. There are basic steps to get the main functionality of the app, however if more features want to be added, more methods and attributes would need to be added for the animation cycle. Althought not mandatory, a landscape .xml file <b> CAN </b> be created to allow full functionality when the screen would be rotated.
 
-       http://www.apache.org/licenses/LICENSE-2.0
+There are 3 main functions for the application to run.
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+```
+1. Implement the given library in order to use its functionalities (this is found in the build.gradle (Module: app)).
+2. Add the 3 main attributes to get the flip on touch feature running.
+3. Import <b>AT LEAST</b> 2 pictures less than 4k resolution to add into the drawable folder.
+```
+
+The main function of this widget does not require any coding within the MainActivity.java file. The only files required are the build.gradle file to implement the library, the activity_main.xml file for adding attributes to the FlipView, and the drawable folder was used to add at least 2 pictures.
+
+## References
+
+https://github.com/wajahatkarim3/EasyFlipView
+
+https://github.com/davideas/FlipView
+
+https://developer.android.com/reference/android/view/ViewGroup
