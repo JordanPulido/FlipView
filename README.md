@@ -72,7 +72,7 @@ There are 3 main functions for the application to run.
 ```
 1. Implement the given library in order to use its functionalities (this is found in the build.gradle (Module: app)).
 2. Add the 3 main attributes to get the flip on touch feature running.
-3. Import <b>AT LEAST</b> 2 pictures less than 4k resolution to add into the drawable folder.
+3. Import AT LEAST 2 pictures less than 4k resolution to add into the drawable folder.
 ```
 
 The main function of this widget does not require any coding within the MainActivity.java file. The only files required are the build.gradle file to implement the library, the activity_main.xml file for adding attributes to the FlipView, and the drawable folder was used to add at least 2 pictures.
